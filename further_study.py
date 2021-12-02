@@ -45,7 +45,6 @@ def custom_append(input_list, value):
         True
 
     """
-    
     input_list += [value]
 
 
@@ -83,7 +82,7 @@ def custom_insert(input_list, index, value):
 
     """
 
-    input_list = input_list[:index] + [value] + input_list[index:]
+    input_list[:] = input_list[:index] + [value] + input_list[index:]    
 
 
 def custom_remove(input_list, value):
@@ -101,7 +100,12 @@ def custom_remove(input_list, value):
         True
 
     """
-
+    index = 0
+    for i in input_list:
+        if i == value:
+            del input_list[index]
+            return
+        index += 1
 
 
 def custom_pop(input_list):
@@ -120,8 +124,6 @@ def custom_pop(input_list):
 
     """
     value = input_list[-1]
-    # previously: input_list = input_list[:-1]
-    # passed with code: del input_list[-1] ---> But why?
     del input_list[-1]
     return value
 
@@ -145,8 +147,6 @@ def custom_index(input_list, value):
             return index
 
 
-
-
 def custom_count(input_list, value):
     """Return the number of times value appears in the list.
 
@@ -161,7 +161,6 @@ def custom_count(input_list, value):
     """
     count = 0
     for i in input_list:
-        
         if i == value:
             count += 1
     return count
@@ -181,9 +180,8 @@ def custom_reverse(input_list):
         >>> multiples == [27, 24, 21, 18, 15, 12, 9, 6, 3, 0]
         True
 
-    """
-
-    pass
+    """     
+    input_list[:] = input_list[::-1]
 
 
 def custom_contains(input_list, value):
@@ -202,7 +200,6 @@ def custom_contains(input_list, value):
         True
 
     """
-
     for i in input_list:
         if i == value:
             return True
@@ -226,6 +223,9 @@ def custom_equality(some_list, another_list):
         False
 
     """
+    if some_list == another_list:
+        return True
+    return False
 
     return None
 
